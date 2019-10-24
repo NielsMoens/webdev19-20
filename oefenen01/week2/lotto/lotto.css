@@ -1,0 +1,29 @@
+body {
+    background: hsl(0, 100%, 40%);
+    color: #fff;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 2rem;
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.result {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.number {
+    background: #FFF;
+    display: flex;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    font-weight: bold;
+    border-radius: 50%;
+    margin:10px;
+    font-size: 3rem;
+}

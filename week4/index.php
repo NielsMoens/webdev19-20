@@ -1,26 +1,43 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <!-- zijn versie -->
+    <!-- mijn versie -->
     <?php
-    // $string_users = file_get_contents('users.csv');
-    // $arrayusers = explode("\n", $string_users);
-    // print_r($arrayusers);
-    // foreach ($arrayusers as $row) {
-    //     echo '<li>'.$row;
-    //     # code...
-    // }
+    $new_content ='';
+        if(isset($_POST["item"])){
+            $new_content ='';
+            foreach ($_POST["item"] as $row) {
+                // opdeze manier ga je newcontent altijd overschrijven
+                // $new_content = implode(',', $row);
+                $new_content = $new_content . implode(',', $row);
+                //of deze korte manier
+                $new_content .= implode(',', $row);
+                $new_content .= "\n";
+            }
+            file_put_contents('users.csv', $new_content);
+        }
     ?>
 
-    <!-- //MIJN VERSIE -->
+    <!-- post naar zijn eigen -->
+    <form method= "POST"> 
+    <button type="submit">save</button>
+
     <?php
+    $string_users = file_get_contents('users.csv');
+
+    $arrayusers = explode("\n", $string_users);
+    foreach ($arrayusers as $key => $row) {
+        $array_row = explode(',', $row);
+        echo '<div>';
+        foreach ($array_row as $col) {
+            // een name="items[]" tag toevoegen zodat je meerdere kan opslaan als 1lijst 
+            echo '<input type="text" value="'. $col . '"name="item['. $key .'][]">'; 
+        }
+        echo '</div>';
+    }
+    ?>
+    <button type="submit">save</button>
+    </form>
+
+     <!-- //MIJN VERSIE 
         $csv = array_map('str_getcsv', file('users.csv'));
         array_shift($csv);
         print_r($csv);
@@ -38,9 +55,6 @@
             }
         }
     
-    ?>
-    <form method="post">
-        <input name= "btn" type="submit" value="Submit">
-    </form>
-</body>
-</html>
+    ?> -->
+
+    
